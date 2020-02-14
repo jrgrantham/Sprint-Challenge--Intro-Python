@@ -9,6 +9,9 @@ class City:
     self.lat = lat
     self.lon = lon
 
+  def __str__(self):
+    return f'{self.name} is located at coordinates: {self.lat}, {self.lon}'
+
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
 #
@@ -76,6 +79,7 @@ for c in cities:
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
+
   highlat = max(float(lat1), float(lat2))
   lowlat = min(float(lat1), float(lat2))
   highlon = max(float(lon1), float(lon2))
@@ -93,3 +97,20 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # the specified coordinates.
 
   return within
+
+def findCities():
+  input1 = input('Enter lat1, lon1: ').replace(',', '').split(' ')
+  input2 = input('Enter lat2, lon2: ').replace(',', '').split(' ')
+
+  lat1 = float(input1[0])
+  lon1 = float(input1[1])
+  lat2 = float(input2[0])
+  lon2 = float(input2[1])
+
+  result = cityreader_stretch(lat1, lon1, lat2, lon2, cities)
+  output = [city.name for city in result]
+
+  for city in output:
+    print(city)
+
+findCities()
